@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 
 import javax.persistence.Column;
 
-public record DadosCadastroUsuario(
+public record DadosCadastroDeUsuario(
 
         @NotBlank(message = "Este campo não pode estar em branco")
         String nome,
