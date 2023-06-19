@@ -12,4 +12,6 @@ public interface IUsuarioService {
     Page<DadosListagemDeUsuarios> listarUsuarios(Pageable pageable);
 
     DadosDetalhamentoDeUsuario detalharUsuario(UUID id);
+
+    void marcarLivroComoLido(UUID usuarioId, UUID livroId);
 }

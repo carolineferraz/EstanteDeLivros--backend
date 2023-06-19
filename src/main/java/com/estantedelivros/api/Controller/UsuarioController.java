@@ -1,9 +1,6 @@
 package com.estantedelivros.api.Controller;
 
-import com.estantedelivros.api.Service.Usuario.DadosCadastroDeUsuario;
-import com.estantedelivros.api.Service.Usuario.DadosDetalhamentoDeUsuario;
-import com.estantedelivros.api.Service.Usuario.DadosListagemDeUsuarios;
-import com.estantedelivros.api.Service.Usuario.IUsuarioService;
+import com.estantedelivros.api.Service.Usuario.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -38,5 +36,11 @@ public class UsuarioController {
     public ResponseEntity<DadosDetalhamentoDeUsuario> detalharUsuario(@PathVariable UUID id){
         var resposta = _usuarioService.detalharUsuario(id);
         return ResponseEntity.ok(resposta);
+    }
+
+    @PutMapping("/{usuarioId}/{livroId}")
+    public ResponseEntity marcarLivroComoLido(@PathVariable UUID usuarioId, @PathVariable UUID livroId){
+        _usuarioService.marcarLivroComoLido(usuarioId, livroId);
+        return ResponseEntity.noContent().build();
     }
 }
