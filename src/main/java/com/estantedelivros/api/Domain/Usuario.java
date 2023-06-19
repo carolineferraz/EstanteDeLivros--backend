@@ -57,7 +57,6 @@ public class Usuario {
         }
     }
     public void removerCategoriaOuTrofeu(Categoria categoriaLivro){
-        System.out.println(contagemCategoria);
         int qtdCategoria = Collections.frequency(this.contagemCategoria, categoriaLivro);
         if(qtdCategoria == 0){
             this.trofeis.remove(categoriaLivro);
@@ -67,9 +66,7 @@ public class Usuario {
         } else {
             this.contagemCategoria.remove(categoriaLivro);
         }
-        System.out.println(contagemCategoria);
     }
-
 
     public void adicionarPontuacao(int qtdPaginasLivro){
         var quociente = Math.floorDiv(qtdPaginasLivro, 100);
