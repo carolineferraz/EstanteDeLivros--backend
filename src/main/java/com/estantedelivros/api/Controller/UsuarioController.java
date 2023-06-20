@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +28,7 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<DadosListagemDeUsuarios>> listarUsuarios(@PageableDefault(size = 10, sort = {"pontuacao"}) Pageable pageable){
+    public ResponseEntity<Page<DadosListagemDeUsuarios>> listarUsuarios(@PageableDefault(size = 10, sort = {"pontuacao"}, direction = Sort.Direction.DESC) Pageable pageable){
         var resposta = _usuarioService.listarUsuarios(pageable);
         return ResponseEntity.ok(resposta);
     }
