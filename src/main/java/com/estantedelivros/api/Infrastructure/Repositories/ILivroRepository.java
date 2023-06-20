@@ -1,4 +1,4 @@
-package com.estantedelivros.api.Infrastructure;
+package com.estantedelivros.api.Infrastructure.Repositories;
 
 import com.estantedelivros.api.Domain.Livro;
 import org.springframework.data.mongodb.repository.MongoRepository;

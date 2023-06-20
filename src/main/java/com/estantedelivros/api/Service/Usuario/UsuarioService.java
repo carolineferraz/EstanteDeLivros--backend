@@ -1,7 +1,7 @@
 package com.estantedelivros.api.Service.Usuario;
 
 import com.estantedelivros.api.Domain.Usuario;
-import com.estantedelivros.api.Infrastructure.IUsuarioRepository;
+import com.estantedelivros.api.Infrastructure.Repositories.IUsuarioRepository;
 import com.estantedelivros.api.Service.Livro.ILivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
