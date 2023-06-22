@@ -6,6 +6,7 @@ import com.estantedelivros.api.Service.Livro.ILivroService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -18,10 +19,14 @@ public class UsuarioService implements IUsuarioService {
     private IUsuarioRepository _usuarioRepository;
 
     @Autowired
+    private PasswordEncoder encoder;
+
+    @Autowired
     private ILivroService _livroService;
 
     public String cadastrarUsuario(DadosCadastroDeUsuario dados){
-        var usuario = new Usuario(dados.nome(), dados.email(), dados.senha());
+        var senhaBCrypt = encoder.encode(dados.senha());
+        var usuario = new Usuario(dados.nome(), dados.email(), senhaBCrypt);
         _usuarioRepository.save(usuario);
         System.out.println(usuario.getNome());
         return usuario.getId().toString();
