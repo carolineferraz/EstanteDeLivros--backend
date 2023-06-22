@@ -1,4 +1,4 @@
-package com.estantedelivros.api.Service.Usuario;
+package com.estantedelivros.api.Service.Autenticacao;
 
 import com.estantedelivros.api.Infrastructure.Repositories.IUsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
