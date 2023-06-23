@@ -1,6 +1,7 @@
 package com.estantedelivros.api.Controller;
 
 import com.estantedelivros.api.Domain.Usuario;
+import com.estantedelivros.api.Infrastructure.Security.DadosTokenJwt;
 import com.estantedelivros.api.Infrastructure.Security.TokenService;
 import com.estantedelivros.api.Service.Autenticacao.DadosAutenticacao;
 import jakarta.validation.Valid;
@@ -25,9 +26,10 @@ public class AutenticacaoController {
 
     @PostMapping
     public ResponseEntity autenticarUsuario(@RequestBody @Valid DadosAutenticacao dados){
-        var token = new UsernamePasswordAuthenticationToken(dados.email(), dados.senha());
-        var autentication = _authenticationManager.authenticate(token);
+        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.email(), dados.senha());
+        var authentication = _authenticationManager.authenticate(authenticationToken);
+        var tokenJwt = _tokenService.gerarToken((Usuario) authentication.getPrincipal());
 
-        return ResponseEntity.ok(_tokenService.gerarToken((Usuario) autentication.getPrincipal()));
+        return ResponseEntity.ok(new DadosTokenJwt(tokenJwt));
     }
 }
