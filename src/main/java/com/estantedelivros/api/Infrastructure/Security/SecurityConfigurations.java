@@ -27,6 +27,7 @@ public class SecurityConfigurations {
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers(HttpMethod.POST, "api/v1/login").permitAll();
+                    req.requestMatchers(HttpMethod.POST, "api/v1/usuario").permitAll();
                     req.anyRequest().authenticated();
                 })
                 .addFilterBefore(_securityFilter, UsernamePasswordAuthenticationFilter.class)
