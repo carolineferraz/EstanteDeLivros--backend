@@ -34,9 +34,15 @@ public class LivroController {
         return ResponseEntity.ok(resposta);
     }
 
+    @GetMapping("/titulo/{titulo}")
+    public ResponseEntity<Page<DadosListagemDeLivros>> listarLivrosPorTitulo(@PageableDefault(size = 10, sort = {"titulo"}) Pageable pageable, @PathVariable String titulo){
+        var resposta = _livroService.listarLivrosPorTitulo(pageable, titulo);
+        return ResponseEntity.ok(resposta);
+    }
     @GetMapping("/{id}")
     public ResponseEntity<Livro> detalharLivro(@PathVariable UUID id){
         var resposta = _livroService.detalharLivro(id);
         return ResponseEntity.ok(resposta);
     }
+
 }

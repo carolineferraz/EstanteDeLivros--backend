@@ -12,5 +12,7 @@ public interface ILivroService {
 
     Page<DadosListagemDeLivros> listarLivros(Pageable pageable);
 
+    Page<DadosListagemDeLivros> listarLivrosPorTitulo(Pageable pageable, String titulo);
+
     public Livro detalharLivro(UUID id);
 }

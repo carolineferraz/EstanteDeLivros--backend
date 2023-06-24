@@ -31,4 +31,8 @@ public class LivroService implements ILivroService {
         Livro livro = optional.orElseThrow(() -> new NoSuchElementException("Usuário não encontrado"));
         return livro;
     }
+
+    public Page<DadosListagemDeLivros> listarLivrosPorTitulo(Pageable pageable, String titulo) {
+        return _livroRepository.findDadosListagemLivrosByTituloContainingIgnoreCase(titulo, pageable);
+    }
 }
